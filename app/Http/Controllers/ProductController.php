@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\Product;
+use App\Models\Guest;
 
 class ProductController extends Controller
 {
@@ -13,7 +14,12 @@ class ProductController extends Controller
     public function show($id)
     {	
     	$product = Product::findorFail($id);
-        $intent = auth()->user()->createSetupIntent();
+        if(auth()->user()){
+            $intent = auth()->user()->createSetupIntent();
+        }else{
+            $guest = new Guest();
+            $intent = $guest->createSetupIntent();
+        }
 
         return view('frontend.coupons.show', compact('intent','product'));
     }
@@ -21,7 +27,14 @@ class ProductController extends Controller
     public function purchase(Request $request,$id)
     {	
     	$product = Product::findorFail($id);
-    	$user          = $request->user();
+    	$user = $request->user();
+        $redirect = 'home';
+        if(!$user){
+            $user = new Guest();
+            $user->name = 'Guest User';
+            $redirect = '/';
+        }
+        
         // $stripeCustomer = $user->createAsStripeCustomer();
         // dd($stripeCustomer);
         $paymentMethod = $request->input('payment_method');
@@ -34,7 +47,7 @@ class ProductController extends Controller
         } catch (\Exception $exception) {
         	return back()->with('error', $exception->getMessage());
         }
-        return redirect('home')->with('status', 'Product purchased successfully!');
+        return redirect($redirect)->with('status', 'Product purchased successfully!');
     }
 
 }

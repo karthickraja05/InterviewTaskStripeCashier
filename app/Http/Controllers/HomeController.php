@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except("main");
     }
 
     /**
@@ -27,4 +27,12 @@ class HomeController extends Controller
         $products = Product::get();
         return view('home',compact('products'));
     }
+
+
+    public function main()
+    {   
+        $products = Product::get();
+        return view('home',compact('products'));
+    }
+
 }
