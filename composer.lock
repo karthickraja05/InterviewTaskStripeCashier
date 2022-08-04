@@ -4,8 +4,62 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "23252402e75717014c006ea03ccd7c42",
+    "content-hash": "7ce513e9f904a8506572ca23d3d4e9e2",
     "packages": [
+        {
+            "name": "aranyasen/laravel-adminer",
+            "version": "2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/senaranya/laravel-adminer.git",
+                "reference": "9a24532b57399861278dcff3dadb6c383bcb66b5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/senaranya/laravel-adminer/zipball/9a24532b57399861278dcff3dadb6c383bcb66b5",
+                "reference": "9a24532b57399861278dcff3dadb6c383bcb66b5",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/routing": ">=5.1",
+                "illuminate/support": ">=5.1",
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.4",
+                "roave/security-advisories": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tests\\": "tests/",
+                    "Aranyasen\\LaravelAdminer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aranya Sen",
+                    "email": "sen.aranya@gmail.com"
+                }
+            ],
+            "description": "Adminer (by Jakub Vrana) wrapper for Laravel 5.5+",
+            "keywords": [
+                "adminer",
+                "database",
+                "explorer",
+                "laravel5",
+                "management"
+            ],
+            "support": {
+                "issues": "https://github.com/senaranya/laravel-adminer/issues",
+                "source": "https://github.com/senaranya/laravel-adminer/tree/2.0.3"
+            },
+            "time": "2021-06-30T06:23:08+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.9.3",

@@ -14,7 +14,23 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <div class="container">
+                      <div class="row">
+                        @foreach($products as $key => $product)
+                        <div class="col-sm py-5">
+                          <p><b>Product Name:</b> {{ $product->name }}</p>
+                          <p><b>Price:</b> {{ $product->price }}</p>
+                          <p><b>Description:</b> {{ $product->description }}</p>
+                          <img src="{{ $product->image }}" width="200" height="200"/><br/>
+                          <a href="{{ url('show') }}/{{ $product->id }}"><button type="button" class="btn btn-primary">BUY NOW</button></a>
+                        </div>
+                        @if($loop->iteration % 3 == 0)
+                        </div>
+                        <div class="row">
+                        @endif
+                        @endforeach
+                      </div>
+                    </div>
                 </div>
             </div>
         </div>
