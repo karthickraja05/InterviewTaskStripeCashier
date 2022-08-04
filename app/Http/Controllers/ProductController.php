@@ -26,12 +26,12 @@ class ProductController extends Controller
 
     public function purchase(Request $request,$id)
     {	
-    	$product = Product::findorFail($id);
+        $product = Product::findorFail($id);
     	$user = $request->user();
         $redirect = 'home';
         if(!$user){
             $user = new Guest();
-            $user->name = 'Guest User';
+            $user->name = $request->card_holder_name ?? 'Guest User';
             $redirect = '/';
         }
         
