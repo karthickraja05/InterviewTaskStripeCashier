@@ -24,7 +24,7 @@
                           <img src="{{ $product->image }}" width="200" height="200"/><br/>
                           <a href="{{ url('show') }}/{{ $product->id }}"><button type="button" class="btn btn-primary">BUY NOW</button></a>
                         </div>
-                        @if($loop->iteration % 3 == 0)
+                        @if($loop->iteration % 2 == 0)
                         </div>
                         <div class="row">
                         @endif

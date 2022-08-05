@@ -9,8 +9,6 @@ use App\Models\Guest;
 
 class ProductController extends Controller
 {
-    // ...
-
     public function show($id)
     {	
     	$product = Product::findorFail($id);
@@ -35,15 +33,15 @@ class ProductController extends Controller
             $redirect = '/';
         }
         
-        // $stripeCustomer = $user->createAsStripeCustomer();
-        // dd($stripeCustomer);
         $paymentMethod = $request->input('payment_method');
-        // dd($request->all());
+        
         try {
             $user->createOrGetStripeCustomer();
             $user->updateDefaultPaymentMethod($paymentMethod);
-            // $user->updateDefaultPaymentMethodFromStripe();
-            $user->charge($product->price * 100, $paymentMethod);        
+            $user->charge(
+                $product->price * 100, 
+                $paymentMethod
+            );        
         } catch (\Exception $exception) {
         	return back()->with('error', $exception->getMessage());
         }
